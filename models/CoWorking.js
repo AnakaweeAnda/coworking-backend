@@ -28,6 +28,9 @@
     tel : {
         type : String
     },
+    picture : {
+        type : String
+    },
     open : {
         type : String,
         required : [true,'Please add open time']
