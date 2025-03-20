@@ -51,11 +51,7 @@ exports.login=async (req,res,next)=> {
 
     // const token = user.getSignedJwtToken();
     // res.status(200).json({success:true,token});
-    res.status(200).json({
-        success:true,
-        data:user,
-        token : token
-    })
+    sendTokenResponse(user,200,res);
 }
 
 const sendTokenResponse = (user,statusCode,res)=> {
@@ -72,7 +68,8 @@ const sendTokenResponse = (user,statusCode,res)=> {
 
     res.status(statusCode).cookie('token',token,options).json({
         success : true,
-        token
+        token,
+        user
     });
 }
 
