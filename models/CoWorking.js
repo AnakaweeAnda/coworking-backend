@@ -29,7 +29,8 @@
         type : String
     },
     picture : {
-        type : String
+        type : String,
+        required : [true,'Please add a picture URL']
     },
     open : {
         type : String,
