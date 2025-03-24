@@ -126,6 +126,17 @@ exports.updateReservation = async (req, res, next) => {
                 message: `User ${req.user.id} is not authorized to update this reservation`
             });
         }
+
+        const existedDate = await Reservation.find({reservDate: req.body.reservDate,coWorking: req.body.coWorking})
+        console.log(existedDate)
+        console.log(existedDate.length>=1)
+        if(existedDate.length>=1) {
+            return res.status(400).json({
+                success: false,
+                message: 'This place has already been reserved'
+            })
+        }
+
         reservation = await Reservation.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
