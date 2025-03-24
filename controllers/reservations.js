@@ -75,7 +75,8 @@ exports.addReservation = async (req, res, next) => {
         }
 
         req.body.user = req.user.id;
-        const existedDate = await Reservation.find({reservDate: req.body.reservDate})
+        const existedDate = await Reservation.find({reservDate: req.body.reservDate,coWorking: req.params.coWorkingId})
+        console.log(existedDate)
         console.log(existedDate.length>=1)
         if(existedDate.length>=1) {
             return res.status(400).json({
@@ -83,7 +84,7 @@ exports.addReservation = async (req, res, next) => {
                 message: 'This place has already been reserved'
             })
         }
-        
+
         const existedReservations = await Reservation.find({ user: req.user.id });
         console.log(existedReservations);
         if (existedReservations.length >= 3 && req.user.role !== 'admin') {
