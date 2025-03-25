@@ -13,7 +13,7 @@ const coworkings = require('./routes/coworkings');
 const reservations = require('./routes/reservations');
 const auth = require('./routes/auth');
 const banned = require('./routes/banning');
-const users = require('./routes/user');
+const users = require('./routes/users');
 
 dotenv.config({ path: './config/config.env' });
 
