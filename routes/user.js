@@ -4,8 +4,10 @@ const {
     login,
     getMe,
     logout,
-    getUsers  // Import the getUsers function
+    
 } = require('../controllers/auth');
+
+const { getUsers } = require('../controllers/user');
 const router = express.Router();
 const { protect, authorize } = require('../middleware/auth');
 
