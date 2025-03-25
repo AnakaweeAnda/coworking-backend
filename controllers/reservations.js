@@ -10,6 +10,9 @@ exports.getReservations = async (req, res, next) => {
         query = Reservation.find({ user: req.user.id }).populate({
             path: 'coWorking',
             select: 'name province tel'
+        }).populate({
+            path: 'user',
+            select: 'name email role'  // Add fields you want from user, excluding sensitive data
         });
     } else {
         if (req.params.coWorkingId) {
@@ -17,11 +20,17 @@ exports.getReservations = async (req, res, next) => {
             query = Reservation.find().populate({
                 path: 'coWorking',
                 select: 'name province tel'
+            }).populate({
+                path: 'user',
+                select: 'name email role'  // Add fields you want from user, excluding sensitive data
             });
         } else {
             query = Reservation.find().populate({
                 path: 'coWorking',
                 select: 'name province tel'
+            }).populate({
+                path: 'user',
+                select: 'name email role'  // Add fields you want from user, excluding sensitive data
             });
         }
     }
