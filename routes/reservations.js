@@ -7,11 +7,11 @@ const {checkBanned} = require('../middleware/banning');
 const { protect, authorize } = require('../middleware/auth');
 
 router.route('/')
-    .get(protect,checkBanned, getReservations)
+    .get(protect, getReservations)
     .post(protect,checkBanned, authorize('admin', 'user'), addReservation);
 
 router.route('/:id')
-    .get(protect,checkBanned, getReservation)
+    .get(protect, getReservation)
     .put(protect,checkBanned, authorize('admin', 'user'), updateReservation)
     .delete(protect,checkBanned, authorize('admin', 'user'), deleteReservation);
 
